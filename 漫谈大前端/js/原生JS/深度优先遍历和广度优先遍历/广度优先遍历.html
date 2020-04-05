@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>广度优先遍历</title>
+</head>
+<body>
+    <div id="root">
+        <ul>
+            <li>
+                <a href="">
+                    <img src="" alt="">
+                </a>
+            </li>
+            <li>
+                <span></span>
+            </li>
+            <li>
+            </li>
+        </ul>
+        <p></p>
+        <button></button>
+    </div>
+    <script>
+        //递归版本(有错)
+        function breadthFirstSearch(node) {
+            var nodes = [];
+            var i = 0;
+            if (node != null) {
+                nodes.push(node);
+                breadthFirstSearch(node.nextElementSibling);
+                node = nodes[i++];
+                breadthFirstSearch(node.firstElementChild);
+            }
+            return nodes;
+        }
+        let root = document.getElementById('root');
+        console.log(breadthFirstSearch(root));
+    </script>
+    <script>
+        //非递归版本
+        function breadthFirstSearch(node) {
+            var nodes = [];
+            if (node != null) {
+                var queue = [];
+                queue.unshift(node);
+                while (queue.length != 0) {
+                    var item = queue.shift();
+                    nodes.push(item);
+                    var children = item.children;
+                    for (var i = 0; i < children.length; i++) {
+                        queue.push(children[i]); 
+                    } 
+                } 
+                return nodes; 
+            }
+        }
+        console.log(breadthFirstSearch(root));
+    </script>
+</body>
+</html>

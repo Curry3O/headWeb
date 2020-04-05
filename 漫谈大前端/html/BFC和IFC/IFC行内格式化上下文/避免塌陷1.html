@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            width:150px;
+            height:150px;
+            display:inline-block;
+            /* 允许长单词换行到下一行 */
+            word-wrap:break-word;
+            background:green;
+        }
+    </style>
+</head>
+<body>
+    <!-- 可以看到第二个inline-block发生了下陷，这里的知识就涉及到了IFC。给第二个添加vertical-align:top;属性就可以解决问题。 -->
+    <div class='box'>
+        asdfasdfasdfffffffffffffffffffffffffffffffffffffffffffffffff
+    </div>
+    <div class='box'>
+        asdfasdfasdf
+    </div>
+</body>
+</html>

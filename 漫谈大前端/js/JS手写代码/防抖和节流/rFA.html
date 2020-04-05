@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>rFA</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        #SomeElementYouWantToAnimate {
+            width: 100px;
+            height: 100px;
+            background-color: #000;
+        }
+    </style>
+</head>
+<body>
+    <div id="SomeElementYouWantToAnimate"></div>
+    <script>
+        var start = null;
+        var element = document.getElementById('SomeElementYouWantToAnimate');
+        element.style.position = 'absolute';
+        /**
+         * @method 移动我们的小黑方块
+         */
+        function step(timestamp) {
+            if (!start){
+                start = timestamp;
+            }
+            var progress = timestamp - start;
+            element.style.left = Math.min(progress / 10, 400) + 'px';
+            if (progress < 4000) {
+                window.requestAnimationFrame(step);
+            }
+        }
+
+        window.requestAnimationFrame(step);
+    </script>
+</body>
+</html>

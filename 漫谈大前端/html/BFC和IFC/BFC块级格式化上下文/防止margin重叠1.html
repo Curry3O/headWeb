@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>防止margin重叠</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        p {
+            color: #f55;
+            background: yellow;
+            width: 200px;
+            line-height: 100px;
+            text-align: center;
+            margin: 30px;
+        }
+    </style>
+</head>
+<body>
+    <p>看看我的margin是多少</p>
+    <p>看看我的margin是多少</p>
+    <!-- 属于同一个BFC的两个相邻的Box会发生margin重叠 -->
+</body>
+</html>

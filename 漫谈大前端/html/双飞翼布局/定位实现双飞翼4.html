@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>table-cell实现双飞翼</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            border: 0;
+            box-sizing:border-box;
+        }
+        .container{
+            display: table;
+        }
+        .left, .center, .right{
+            /* 外层容器使用table布局，设置元素为table-cell布局后它们就能在一行显示了，display: table-cell;设置宽度无效，因此他们的宽度由内容撑开 */
+            display: table-cell;
+        }
+        .center{
+            width: 100%;
+        }
+        .left-inner{
+            width: 200px;
+            height: 400px;
+            background-color: peachpuff;
+        }
+        .right-inner{
+            width: 200px;
+            height: 400px;
+            background-color: peachpuff;
+        }
+        .center-inner{
+            height: 400px;
+            background-color: plum;
+        }
+    </style>
+</head>
+<body>
+    <div class="container clearfix">
+        <div class="left">
+            <div class="left-inner"></div>
+        </div>
+        <div class="center">
+            <div class="center-inner"></div>
+        </div>
+        <div class="right">
+            <div class="right-inner"></div>
+        </div>
+    </div>
+</body>
+</html>

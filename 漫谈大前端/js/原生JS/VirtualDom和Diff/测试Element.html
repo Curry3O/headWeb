@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script type="module">
+        //会出现的跨域问题,可以使用Apache Tomcat或vue-cli或webpack-cli脚手架搭建解决
+        import {el} from './实现一个 Element.js';
+        //完成一个 Element 模拟真实节点
+        let ul = el('ul', { id: 'list' }, [
+            el('li', { class: 'item' }, ['Item 1']),
+            el('li', { class: 'item' }, ['Item 2']),
+            el('li', { class: 'item' }, ['Item 3'])
+        ]);
+
+        //执行写好的 render 方法，将 Element 对象渲染成真实的节点
+        let ulRoot = ul.render()
+        document.body.appendChild(ulRoot);
+    </script>
+</body>
+</html>

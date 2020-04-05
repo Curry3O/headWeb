@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>relative + float实现双飞翼</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            border: 0;
+            box-sizing:border-box;
+        }
+        .clearfix:before, .clearfix:after{
+            display: table;
+            content: " ";
+            clear: both;
+        }
+        .container{
+            padding: 0 200px;
+        }
+        .left{
+            position: relative;
+            width: 200px;
+            height: 400px;
+            float: left;
+            /* 1、将.left拉到最左边，原来.left是掉下去的 */
+            margin-left: -100%;
+            /* 2、将.left再次拉到最左边，否则.main的左侧会有200px的空白 */
+            left: -200px;
+            background-color: mediumorchid;
+        }
+        .right{
+            position: relative;
+            width: 200px;
+            height: 400px;
+            float: left;
+            /* 1、将.right拉到最右边，原来.right是掉下去的 */
+            margin-left: -200px;
+            /* 2、将.right再次拉到最右边，否则.main的右侧会有200px的空白 */
+            right: -200px;
+            background-color: mediumorchid;
+        }
+        .center{
+            float: left;
+            width: 100%;
+            height: 400px;
+            background-color: mediumvioletred;
+        }
+    </style>
+</head>
+<body>
+    <div class="container clearfix" clearfix>
+        <div class="center"></div>
+        <div class="left"></div>
+        <div class="right"></div>
+    </div>
+</body>
+</html>

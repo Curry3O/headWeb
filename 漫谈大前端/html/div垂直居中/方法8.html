@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>grid</title>
+    <style>
+        html,body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        .content{
+            width: 300px;
+            height: 300px;
+            border: 1px solid red;
+            /* add */
+            display: grid;
+        }
+        .box{
+            width: 100px;
+            height: 100px;
+            background-color: orange;
+            justify-self: center; /*定义body的元素垂直居中*/
+            align-self: center; /*定义body的里的元素水平居中*/
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <div class="box"></div>
+    </div>
+</body>
+</html>

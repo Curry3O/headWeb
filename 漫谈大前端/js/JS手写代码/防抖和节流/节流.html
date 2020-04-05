@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>节流</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        #one {
+            height: 140px;
+            line-height: 140px;
+            text-align: center;
+            color: #fff;
+            background-color: #aaa;
+            font-size: 80px;
+            margin-bottom: 40px;
+        }
+        #two {
+            height: 140px;
+            line-height: 140px;
+            text-align: center;
+            color: #fff;
+            background-color: #bbb;
+            font-size: 80px;
+            margin-bottom: 40px;
+        }
+        #three {
+            height: 140px;
+            line-height: 140px;
+            text-align: center;
+            color: #fff;
+            background-color: #ccc;
+            font-size: 80px;
+            margin-bottom: 40px;
+        }
+        #four {
+            height: 140px;
+            line-height: 140px;
+            text-align: center;
+            color: #fff;
+            background-color: #ddd;
+            font-size: 80px;
+            margin-bottom: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div id="one"></div>
+    <div id="two"></div>
+    <div id="three"></div>
+    <div id="four"></div>
+    
+
+    <script>
+        let num1 = 1;
+        let one = document.getElementById('one');
+        function count1() {
+            one.innerHTML = num1++;
+        };
+        one.onmousemove = count1;
+    </script>
+
+    <script>
+        let num2 = 1;
+        let two = document.getElementById('two');
+        function count2() {
+            two.innerHTML = num2++;
+        };
+
+        //节流时间戳版
+        function throttle1(func, wait){
+            let previous1 = 0;
+            return function(){
+                let now1 = Date.now();
+                let context1 = this;
+                let args1 = arguments;
+                if (now1 - previous1 > wait) {
+                    func.apply(context1, args1);
+                    // 更新执行时间
+                    previous1 = now1;
+                }
+            } 
+        }
+
+        two.onmousemove = throttle1(count2, 1000);
+    </script>
+
+    <script>
+        let num3 = 1;
+        let three = document.getElementById('three');
+        function count3() {
+            three.innerHTML = num3++;
+        };
+
+        //节流定时器版
+        function throttle2(func, wait){
+            let timeout2;
+            return function(){
+                let context2 = this;
+                let args2 = arguments;
+                if (!timeout2) {
+                    timeout2 = setTimeout(() => {
+                        timeout2 = null;
+                        func.apply(context2, args2);
+                    }, wait);
+                }
+            }
+        }
+
+        three.onmousemove = throttle2(count3, 1000);
+    </script>
+
+    <script>
+        let num4 = 1;
+        let four = document.getElementById('four');
+        function count4() {
+            four.innerHTML = num4++;
+        };
+
+        //双剑合璧版
+
+        /**
+        * @desc 函数节流
+        * @param func 函数
+        * @param wait 延迟执行毫秒数
+        * @param type 1 表时间戳版，2 表定时器版
+        */
+        function throttle3(func, wait, type){
+            if (type === 1) {
+                var previous3 = 0;
+            }else if(type === 2){
+                var timeout3;
+            }
+            return function(){
+                let context3 = this;
+                let args3 = arguments;
+                if (type === 1) {
+                    let now3 = Date.now();
+                    if (now3 - previous3 > wait) {
+                        func.apply(context3, args3);
+                        previous3 = now3;
+                    }
+                }else if (type === 2) {
+                    if (!timeout3) {
+                        timeout3 = setTimeout(() => {
+                            timeout3 = null;
+                            func.apply(context3, args3);
+                        }, wait);
+                    }
+                }
+            }
+        }
+
+        four.onmousemove = throttle3(count4, 1000, 1);
+    </script>
+</body>
+</html>

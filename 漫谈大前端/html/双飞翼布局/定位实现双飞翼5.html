@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>flex实现双飞翼</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            border: 0;
+            box-sizing:border-box;
+        }
+        .container{
+            display: flex; 
+        }
+        .left, .right{
+            flex: 0 0 200px;
+            width: 200px;
+            height: 400px;
+            background-color: pink;
+        }
+        .center{
+            flex-grow: 1;
+            width: 100%;
+            height: 400px;
+            background-color: khaki;
+        }
+        /* flex属性：flex属性是flex-grow, flex-shrink 和 flex-basis的简写，默认值为0 1 auto ,后两个属性可选。该属性有两个快捷值：auto (1 1 auto) 和 none
+        (0 0 auto) */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="left"></div>
+        <div class="center"></div>
+        <div class="right"></div>
+    </div>
+</body>
+</html>

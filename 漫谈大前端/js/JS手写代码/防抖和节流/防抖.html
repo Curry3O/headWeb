@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>防抖</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        #one {
+            height: 140px;
+            line-height: 140px;
+            text-align: center;
+            color: #fff;
+            background-color: #aaa;
+            font-size: 80px;
+            margin-bottom: 40px;
+        }
+        #two {
+            height: 140px;
+            line-height: 140px;
+            text-align: center;
+            color: #fff;
+            background-color: #bbb;
+            font-size: 80px;
+            margin-bottom: 40px;
+        }
+        #three {
+            height: 140px;
+            line-height: 140px;
+            text-align: center;
+            color: #fff;
+            background-color: #ccc;
+            font-size: 80px;
+            margin-bottom: 40px;
+        }
+        #four {
+            height: 140px;
+            line-height: 140px;
+            text-align: center;
+            color: #fff;
+            background-color: #ddd;
+            font-size: 80px;
+            margin-bottom: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div id="one"></div>
+    <div id="two"></div>
+    <div id="three"></div>
+    <div id="four"></div>
+    
+
+    <script>
+        let num1 = 1;
+        let one = document.getElementById('one');
+        function count1() {
+            one.innerHTML = num1++;
+        };
+        one.onmousemove = count1;
+    </script>
+
+    <script>
+        let num2 = 1;
+        let two = document.getElementById('two');
+        function count2() {
+            two.innerHTML = num2++;
+        };
+
+        //防抖非立即执行版
+        function debounce1(func, wait){
+            let timeout1;
+            //闭包存储setTimeout状态
+            return function(){
+                //保存作用域，因为下面的setTimeout的作用域是在window
+                let context1 = this;
+                //保存传入func的参数
+                let args1 = arguments;
+                if (timeout1) {
+                    clearTimeout(timeout1);
+                }
+                timeout1 = setTimeout(() => {
+                    //最终返回的函数 this 指向不变以及依旧能接受到参数。
+                    func.apply(context1, args1);
+                }, wait);
+            }
+        }
+
+        two.onmousemove = debounce1(count2, 1000);
+    </script>
+
+    <script>
+        let num3 = 1;
+        let three = document.getElementById('three');
+        function count3() {
+            three.innerHTML = num3++;
+        };
+
+        //防抖立即执行版
+        function debounce2(func, wait){
+            let timeout2;
+            return function(){
+                let context2 = this;
+                let args2 = arguments;
+                if (timeout2) {
+                    clearTimeout(timeout2);
+                }
+                let callNow2 = !timeout2;
+                timeout2 = setTimeout(() => {
+                    timeout2 = null;
+                }, wait);
+                if (callNow2) {
+                    func.apply(context2, args2);
+                }
+            }
+        }
+
+        three.onmousemove = debounce2(count3, 1000);
+    </script>
+
+    <script>
+        let num4 = 1;
+        let four = document.getElementById('four');
+        function count4() {
+            four.innerHTML = num4++;
+        };
+
+        //双剑合璧版
+
+        /**
+        * @desc 函数防抖
+        * @param func 函数
+        * @param wait 延迟执行毫秒数
+        * @param immediate true 表立即执行，false 表非立即执行
+        */
+        function debounce3(func, wait, immediate){
+            let timeout3;
+            return function(){
+                let context3 = this;
+                let args3 = arguments;
+                if (timeout3) {
+                    clearTimeout(timeout3);
+                }
+                if (immediate) {
+                    var callNow3 = !timeout3;
+                    timeout3 = setTimeout(() => {
+                        timeout3 = null;
+                    }, wait);
+                    if (callNow3) {
+                        func.apply(context3, args3);
+                    }
+                }else{
+                    timeout3 = setTimeout(() => {
+                        func.apply(context3, args3);
+                    }, wait);
+                }
+            }
+        }
+        
+        four.onmousemove = debounce3(count4, 1000, true);
+    </script>
+</body>
+</html>

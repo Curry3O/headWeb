@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>absolute + 定位实现双飞翼</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            border: 0;
+            box-sizing:border-box;
+        }
+        .container{
+            position: relative;
+            padding: 0 200px;
+        }
+        .left{
+            width: 200px;
+            height: 400px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            background-color: lightcoral;
+        }
+        .right{
+            width: 200px;
+            height: 400px;
+            position: absolute;
+            right: 0;
+            top: 0;
+            background-color: lightcoral;
+        }
+        .center{
+            height: 400px;
+            background-color: lightgreen;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="left"></div>
+        <div class="center"></div>
+        <div class="right"></div>
+    </div>
+</body>
+</html>
