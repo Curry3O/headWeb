@@ -48,26 +48,3 @@ const mReduce = ['1', null, undefined, , 3, 4].myreduce((a, b) => a + b, 3)
 
 console.log(rReduce); // 31nullundefined34
 console.log(mReduce); // 31nullundefined34
-
-
-const people = [{
-        area: "GZ",
-        name: "YZW",
-        age: 27
-    },
-    {
-        area: "SZ",
-        name: "TYJ",
-        age: 25
-    }
-];
-const map = people.reduce((t, v) => {
-    const {
-        name,
-        ...rest
-    } = v;
-    t[name] = rest;
-    return t;
-}, {}); // { YZW: {…}, TYJ: {…} }
-console.log(map);
-
